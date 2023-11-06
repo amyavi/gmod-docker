@@ -1,0 +1,23 @@
+version: "3.9"
+
+services:
+  gmod:
+    build:
+      context: .
+      dockerfile: docker/gmod.Dockerfile
+      args:
+        BRANCH: $BRANCH
+        MOUNT: $MOUNT
+        UID: $UID
+        GID: $GID
+    cap_drop: ["ALL"]
+    env_file: .env
+    init: true
+    tty: true
+    stdin_open: true
+    volumes: ["./data:/opt/gmod/garrysmod/data"]
+
+    ports:
+      - "27015:27015/tcp"
+      - "27015:27015/udp"
+    restart: unless-stopped
