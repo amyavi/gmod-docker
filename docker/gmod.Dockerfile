@@ -44,6 +44,7 @@ VOLUME /opt/gmod/garrysmod/data
 COPY --chown=${UID}:${GID} --from=fetcher --link /opt/gmod /opt/gmod
 COPY --chown=${UID}:${GID} --link . /overlay/
 RUN ln -s /opt/gmod/garrysmod/data/sv.db /opt/gmod/garrysmod/sv.db \
+    && mkdir /opt/gmod/garrysmod/data \
     && touch /opt/gmod/garrysmod/data/sv.db \
     && rm -rf /overlay/docker \
     && cp -R /overlay/. /opt/gmod/garrysmod
