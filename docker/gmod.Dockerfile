@@ -1,5 +1,5 @@
 # steamcmd/steamcmd:debian-12
-FROM steamcmd/steamcmd@sha256:43f7a9ba7db3ce08b3a10e261bf5b9eb2073676804291d10c9e38d5b21236251 AS fetcher
+FROM steamcmd/steamcmd@sha256:ee8061a6045ab78072080cd3b65b16f987c84c58ab7c349af03a0275214d64ac AS fetcher
 ARG BRANCH=NONE
 ARG MOUNT=
 
