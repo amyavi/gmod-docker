@@ -15,9 +15,11 @@ services:
     init: true
     tty: true
     stdin_open: true
-    volumes: ["./data:/opt/gmod/garrysmod/data"]
+    volumes:
+      - /opt/gmod/garrysmod/cache
+      - /opt/gmod/garrysmod/data
 
     ports:
-      - "27015:27015/tcp"
-      - "27015:27015/udp"
+      - 27015:27015/tcp
+      - 27015:27015/udp
     restart: unless-stopped

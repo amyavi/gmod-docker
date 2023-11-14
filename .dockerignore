@@ -3,5 +3,4 @@
 .env.defaults
 .git
 .gitignore
-data/
 docker-compose.yml

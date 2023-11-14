@@ -39,16 +39,22 @@ RUN apk add --no-cache gcc
 
 USER ${UID}:${GID}
 EXPOSE 27015/tcp 27015/udp
-VOLUME /opt/gmod/garrysmod/data
 
 COPY --chown=${UID}:${GID} --from=fetcher --link /opt/gmod /opt/gmod
 COPY --chown=${UID}:${GID} --link . /overlay/
-RUN ln -s /opt/gmod/garrysmod/data/sv.db /opt/gmod/garrysmod/sv.db \
-    && mkdir /opt/gmod/garrysmod/data \
-    && touch /opt/gmod/garrysmod/data/sv.db \
-    && rm -rf /overlay/docker \
-    && cp -R /overlay/. /opt/gmod/garrysmod
+RUN <<EOF
+ln -s /opt/gmod/garrysmod/cache/steam_cache /opt/gmod/steam_cache
+ln -s /opt/gmod/garrysmod/data/sv.db        /opt/gmod/garrysmod/sv.db
+
+mkdir -p /opt/gmod/garrysmod/cache/steam_cache
+mkdir -p /opt/gmod/garrysmod/data
+touch /opt/gmod/garrysmod/data/sv.db
+
+rm -rf /overlay/docker
+cp -R /overlay/. /opt/gmod/garrysmod
+EOF
 COPY --chown=0:0 --chmod=755 --link docker/gmod-entrypoint.sh /entrypoint.sh
 
+VOLUME ["/opt/gmod/garrysmod/cache", "/opt/gmod/garrysmod/data"]
 WORKDIR /opt/gmod
 ENTRYPOINT /entrypoint.sh
