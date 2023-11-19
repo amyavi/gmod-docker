@@ -32,7 +32,7 @@ printf '}\n' >> /opt/gmod/garrysmod/cfg/mount.cfg
 printf '}\n' >> /opt/gmod/garrysmod/cfg/mountdepots.txt
 EOF
 
-FROM oowy/glibc
+FROM frolvlad/alpine-glibc
 ARG UID=1000
 ARG GID=1000
 RUN apk add --no-cache gcc
