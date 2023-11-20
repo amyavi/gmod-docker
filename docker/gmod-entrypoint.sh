@@ -8,7 +8,7 @@ SRCDS_PARAMS="+map ${MAP:-gm_construct}"
 
 # call srcds directly
 LD_LIBRARY_PATH=".:linux64:bin/linux64:$LD_LIBRARY_PATH"
-HOME=/opt/gmod/cache/steamclient_cache
+HOME=/opt/gmod/garrysmod/cache/steamclient_cache
 export LD_LIBRARY_PATH HOME
 
 # shellcheck disable=SC2086
